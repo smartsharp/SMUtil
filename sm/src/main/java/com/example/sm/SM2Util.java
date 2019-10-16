@@ -6,76 +6,41 @@ import java.io.IOException;
 import java.math.BigInteger;
 
 public class SM2Util {
-
-
-    public static String getEncryption(String string,String privateKey,String publicKey) {
-//        byte[] bytes = testSM2Creator(string,privateKey,publicKey);
-        String encryption = testSM2Creator(string,privateKey,publicKey);
+    public static String getEncryption(String string,String publicKey) {
+        String encryption = testSM2Creator(string,publicKey);
         return encryption;
     }
 
 
-
-//    public static String getDecrypt(byte[] cipherBytes,String privateKey,String publicKey) {
-//        String text = SM2Decrypt(cipherBytes,privateKey,publicKey);
-//        return text;
-//    }
-
-
-    public static String getDecrypt(String  cipherBytes,String privateKey,String publicKey) {
-        String text = SM2Decrypt(cipherBytes,privateKey,publicKey);
+    public static String getDecrypt(String  cipherBytes,String publicKey) {
+        String text = SM2Decrypt(cipherBytes,publicKey);
         return text;
     }
 
 
-    public static String  testSM2Creator(String string,String privateKey,String publicKey) {
-//        String privateKey = "cKwtbFCaURkAoCREdYOIKzngWwybP8er4gYz234gOqY=";
-        byte[] privateBytes = Base64.decode(privateKey, Base64.NO_WRAP);
-
-//        String publicKey = "BNa6GBPM3SPpYXze00+OcoltK08XbeWifpzF1sEbpGR00P3ae5rCw7fWXNCmW6FHVCgciDHoJybVKxPmCJLcqKg=";
+    public static String  testSM2Creator(String string,String publicKey) {
         byte[] publicBytes = Base64.decode(publicKey, Base64.NO_WRAP);
-
         String source = string;
         String userId = "";
         String result = "操作失败";
-        result = getEncString(privateBytes, publicBytes, userId, source);
+        result = getEncString( publicBytes, source);
         return result;
     }
 
 
 
-    public static String SM2Decrypt(String cipherBytes,String privateKey,String publicKey) {
-//        String privateKey = "cKwtbFCaURkAoCREdYOIKzngWwybP8er4gYz234gOqY=";
-        byte[] privateBytes = Base64.decode(privateKey, Base64.NO_WRAP);
-
-//        String publicKey = "BNa6GBPM3SPpYXze00+OcoltK08XbeWifpzF1sEbpGR00P3ae5rCw7fWXNCmW6FHVCgciDHoJybVKxPmCJLcqKg=";
+    public static String SM2Decrypt(String cipherBytes,String publicKey) {
         byte[] publicBytes = Base64.decode(publicKey, Base64.NO_WRAP);
-
-        String userId = "";
         String result = "操作失败";
-        result = getDecryptString(privateBytes, publicBytes, userId, cipherBytes);
+        result = getDecryptString( publicBytes,cipherBytes);
         return result;
     }
-
-
-//    /**
-//     * 加密
-//     */
-//    private static   byte[] getEncString(byte[] privateBytes, byte[] publicBytes, String userId, String source) {
-//        try {
-//            byte[] cipherBytes = SM2Util.encrypt(publicBytes, source.getBytes());
-//            return cipherBytes;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
 
 
     /**
      * 加密
      */
-    private static   String getEncString(byte[] privateBytes, byte[] publicBytes, String userId, String source) {
+    private static   String getEncString(byte[] publicBytes,String source) {
         try {
             byte[] cipherBytes = SM2Util.encrypt(publicBytes, source.getBytes());
             String encryption = Base64.encodeToString(cipherBytes, Base64.NO_WRAP);
@@ -86,33 +51,10 @@ public class SM2Util {
         }
     }
 
-
-
-
-
-
-//    /**
-//     * 解密
-//     */
-//    public static String getDecryptString(byte[] privateBytes, byte[] publicBytes, String userId, byte[] cipherBytes) {
-//        try {
-//            String q = "qwe";
-//            byte[] privateByte =  Base64.decode(q, Base64.NO_WRAP);
-//
-//
-//            byte[] plainBytes = SM2Util.decrypt(privateBytes, cipherBytes);
-//            String plainText = null == plainBytes ? null : new String(plainBytes);
-//            return plainText;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return "解密失败";
-//        }
-//    }
-
     /**
      * 解密
      */
-    public static String getDecryptString(byte[] privateBytes, byte[] publicBytes, String userId,String encryption) {
+    public static String getDecryptString(byte[] privateBytes,String encryption) {
         try {
 
             byte[] cipherBytes =  Base64.decode(encryption, Base64.NO_WRAP);
