@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                content = SM2Util.getEncryption("qwe", privateKey, publicKey);
+//                content = SM2Util.getEncryption("qwe", privateKey, publicKey);
+                content = SM2Util.getEncryption("qwe", publicKey);
                 textView1.setText("SM2加密结果 : " + content);
             }
         });
@@ -60,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textView2.setText("SM2解密结果 : " + SM2Util.getDecrypt(content, privateKey, publicKey));
+//                textView2.setText("SM2解密结果 : " + SM2Util.getDecrypt(content, privateKey, publicKey));
+                textView2.setText("SM2解密结果 : " + SM2Util.getDecrypt(content, privateKey));
             }
         });
     }
