@@ -1,1 +1,1 @@
-include ':app', ':sm'
+include ':app', ':sm', ':demoutil', ':demoutil'
