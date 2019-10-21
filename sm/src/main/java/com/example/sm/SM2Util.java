@@ -15,6 +15,7 @@ public class SM2Util {
     public static String getDecrypt(String  cipherBytes,String publicKey) {
         String text = SM2Decrypt(cipherBytes,publicKey);
         return text;
+
     }
 
 
