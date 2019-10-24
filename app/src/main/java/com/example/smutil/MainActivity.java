@@ -18,11 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private TextView textView1;
     private TextView textView2;
-    private TextView textView3;
-    private TextView textView4;
 
     private String content;
-    private byte[] cipherBytes;
 
     String privateKey = "cKwtbFCaURkAoCREdYOIKzngWwybP8er4gYz234gOqY=";
     String publicKey = "BNa6GBPM3SPpYXze00+OcoltK08XbeWifpzF1sEbpGR00P3ae5rCw7fWXNCmW6FHVCgciDHoJybVKxPmCJLcqKg=";
